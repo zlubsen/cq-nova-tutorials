@@ -69,7 +69,7 @@ void setup() {
   servoinfo::createServoRangeStruct(&sr1, 85, 122, 160);
   servoinfo::createServoRangeStruct(&sr2, 0, 90, 180);
   servoinfo::createServoRangeStruct(&sr3, 35, 90, 175);
-  servoinfo::createServoRangeStruct(&sr4, 0, 93, 140);
+  servoinfo::createServoRangeStruct(&sr4, 0, 93, 180);
   servoinfo::createServoRangeStruct(&sr5, 75, 110, 145);
 
   NovaServo_1.attach(32);
@@ -81,8 +81,8 @@ void setup() {
   NovaServo_1.write(sr1.mid); // min: 85 (when head is @90), max: 160, mid: 122
   NovaServo_2.write(sr2.mid); // min: 53 (when body servo5 completely down), max: 180, mid: 90 | when head is clear: 0-180 
   NovaServo_3.write(sr3.mid); // min: 35, max: 175, mid: 90
-  NovaServo_4.write(sr4.mid); // min: 0, max: 140, mid: 93 -> easily gets stuck on p36 when going over 140
-  NovaServo_5.write(sr5.mid); // min: 75, max: 145 (cable for p36 gets stuck), mid: (145-11/2)+min= 87
+  NovaServo_4.write(sr4.mid); // min: 0, max: 180, mid: 93 -> might need to reposition frame on the servo
+  NovaServo_5.write(sr5.mid); // min: 75, max: 145, mid: (145-11/2)+min= 87
   
   //moveServoThroughRangeSmooth(&NovaServo_1, &sr1);
   //moveServoThroughRangeSmooth(&NovaServo_2, &sr2);

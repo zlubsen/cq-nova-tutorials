@@ -88,7 +88,7 @@ void setupServos() {
   settings::createServoRangeStruct(&sr1, 85, 122, 160);
   settings::createServoRangeStruct(&sr2, 0, 90, 180);
   settings::createServoRangeStruct(&sr3, 35, 90, 175);
-  settings::createServoRangeStruct(&sr4, 0, 93, 140);
+  settings::createServoRangeStruct(&sr4, 0, 93, 180);
   settings::createServoRangeStruct(&sr5, 75, 110, 145);
   
   servo_axis1.x = sr4.mid;   // tutorial default: 90
