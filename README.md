@@ -1,1 +1,1 @@
-# cg-nova-tutorials
+# cq-nova-tutorials
