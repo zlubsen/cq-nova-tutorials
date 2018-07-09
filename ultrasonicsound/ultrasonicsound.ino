@@ -34,14 +34,18 @@ long duration;
 int distance;
 int servoAngle = 110;
 
+const int setpointDistance = 15;
+const int maxDistance = 30;
+const int minDistance = 9;
+
 namespace pid {
   typedef struct {
     double Setpoint;
     double Input;
     double Output;
-    double Kp = 0.51;
-    double Ki = 1.1;
-    double Kd = 0;
+    double Kp = 0.5; // tutorial default: 0.51
+    double Ki = 1.1; // tutorial default: 1.1
+    double Kd = 0; // tutorial default: 0.0
   } pidsetting;
 }
 
@@ -82,7 +86,7 @@ void setup() {
   US_PID.SetSampleTime(10);
   US_PID.SetOutputLimits(-3, 3);
   
-  us_pid_val.Setpoint = 15; 
+  us_pid_val.Setpoint = setpointDistance; 
   us_pid_val.Input = distance;
 }
 
@@ -100,7 +104,7 @@ void loop() {
   
   US_PID.Compute();
   
-  if(distance < 30 && distance > 9){
+  if(distance < maxDistance && distance > minDistance){
        servoAngle = servoAngle - us_pid_val.Output;
        if(servoAngle < sr1.max && servoAngle > sr1.min){
             NovaServo_1.write(servoAngle);
