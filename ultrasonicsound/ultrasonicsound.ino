@@ -43,9 +43,9 @@ namespace pid {
     double Setpoint;
     double Input;
     double Output;
-    double Kp = 0.5; // tutorial default: 0.51
-    double Ki = 1.1; // tutorial default: 1.1
-    double Kd = 0; // tutorial default: 0.0
+    double Kp = 0.51; // tutorial default: 0.51
+    double Ki = 1.4; // tutorial default: 1.1
+    double Kd = 0.0; // tutorial default: 0.0
   } pidsetting;
 }
 
@@ -106,6 +106,7 @@ void loop() {
   
   if(distance < maxDistance && distance > minDistance){
        servoAngle = servoAngle - us_pid_val.Output;
+       
        if(servoAngle < sr1.max && servoAngle > sr1.min){
             NovaServo_1.write(servoAngle);
        }
