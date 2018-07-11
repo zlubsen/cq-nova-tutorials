@@ -1,0 +1,1 @@
+clang -fsyntax-only -Os -I"C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include" -I"C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega" -I"C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino" -D__AVR_ATmega2560__ -DARDUINO=10711 -DF_CPU=16000000L -Wno-unknown-attributes -Wno-attributes blink.cpp
