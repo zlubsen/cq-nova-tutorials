@@ -44,7 +44,7 @@ namespace pid {
     double Input;
     double Output;
     double Kp = 0.51; // tutorial default: 0.51
-    double Ki = 1.4; // tutorial default: 1.1
+    double Ki = 1.1; // tutorial default: 1.1
     double Kd = 0.0; // tutorial default: 0.0
   } pidsetting;
 }
@@ -84,7 +84,7 @@ void setup() {
   
   US_PID.SetMode(AUTOMATIC);
   US_PID.SetSampleTime(10);
-  US_PID.SetOutputLimits(-3, 3);
+  US_PID.SetOutputLimits(-1, 1);
   
   us_pid_val.Setpoint = setpointDistance; 
   us_pid_val.Input = distance;
@@ -107,8 +107,14 @@ void loop() {
   if(distance < maxDistance && distance > minDistance){
        servoAngle = servoAngle - us_pid_val.Output;
        
-       if(servoAngle < sr1.max && servoAngle > sr1.min){
-            NovaServo_1.write(servoAngle);
-       }
+       //if(servoAngle < sr1.max && servoAngle > sr1.min){
+       //   NovaServo_1.write(servoAngle);
+       //} else
+       if(servoAngle > sr1.max)
+          servoAngle = sr1.max;
+       if(servoAngle < sr1.min)
+          servoAngle = sr1.min;
+          
+       NovaServo_1.write(servoAngle);
   }
 }
