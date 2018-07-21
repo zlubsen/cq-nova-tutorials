@@ -130,7 +130,7 @@ void mapRawInputToRange() {
   }
 }
 
-void filterInput() {
+void filterInput() { 
   servo_axis1.x = servo_axis1.x * (1 - filter1.x) + joy1.x * filter1.x;
   servo_axis1.y = servo_axis1.y * (1 - filter1.y) + joy1.y * filter1.y;
   servo_axis2.x = servo_axis2.x * (1 - filter2.x) + joy2.x * filter2.x;
