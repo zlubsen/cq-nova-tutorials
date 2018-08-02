@@ -14,6 +14,8 @@ Capture video;
 int avgX;
 int avgY;
 
+int lastTime;
+
 void setup() {
   size(320 , 240);
   video = new Capture(this, 320, 240);
@@ -24,7 +26,9 @@ void setup() {
   novaPort = new Serial(this, "COM4", 9600);
   novaPort.bufferUntil('\n');
    
-  faces = opencv.detect();  
+  faces = opencv.detect();
+  
+  lastTime = millis();
 }
 
 void draw() {
@@ -58,6 +62,11 @@ void draw() {
     novaPort.write(avgX);
     novaPort.write(avgY);
   }
+      int currentTime = millis();
+    int loopDuration = currentTime - lastTime;
+    lastTime = currentTime;
+    
+    println("loop took: " + loopDuration);
 }
 
 void captureEvent(Capture c) {

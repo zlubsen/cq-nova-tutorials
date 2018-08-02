@@ -42,8 +42,10 @@ pid::pidsetting face_pid_val_x;
 PID FACE_PID_X(&face_pid_val_x.Input,
             &face_pid_val_x.Output,
             &face_pid_val_x.Setpoint,
-            face_pid_val_x.Kp = 0.016,
-            face_pid_val_x.Ki = 0.012,
+            face_pid_val_x.Kp = 0.028, // x
+            face_pid_val_x.Ki = 0.026, // x
+            //face_pid_val_x.Kp = 0.016,
+            //face_pid_val_x.Ki = 0.012,
             face_pid_val_x.Kd = 0.0,
             DIRECT);
 
@@ -51,8 +53,10 @@ pid::pidsetting face_pid_val_y;
 PID FACE_PID_Y(&face_pid_val_y.Input,
             &face_pid_val_y.Output,
             &face_pid_val_y.Setpoint,
-            face_pid_val_y.Kp = 0.028,
-            face_pid_val_y.Ki = 0.026,
+            face_pid_val_y.Kp = 0.016,  // y
+            face_pid_val_y.Ki = 0.012,  // y
+            //face_pid_val_y.Kp = 0.028,
+            //face_pid_val_y.Ki = 0.026,
             face_pid_val_y.Kd = 0,
             DIRECT);
 
@@ -113,6 +117,24 @@ void loop() {
 
     posX = posX + face_pid_val_x.Output;
     posY = posY + face_pid_val_y.Output;
+
+    Serial.print("x: ");
+    Serial.print(face_pid_val_x.Input);
+    Serial.print(" +/- ");
+    Serial.print(face_pid_val_x.Output);
+    Serial.print(" : ");
+    Serial.print(NovaServo_4.read());
+    Serial.print(" -> ");
+    Serial.println(posX);
+  
+    Serial.print("y: ");
+    Serial.print(face_pid_val_y.Input);
+    Serial.print(" +/- ");
+    Serial.print(face_pid_val_y.Output);
+    Serial.print(" : ");
+    Serial.print(NovaServo_3.read());
+    Serial.print(" -> ");
+    Serial.println(posY);
 
     NovaServo_4.write(posX);
     if(posY > sr3.min && posY < sr3.max) NovaServo_3.write(posY);
